@@ -1,10 +1,14 @@
 @echo off
 
+rem folder of git-repo
 set FOLDER=%1
+rem name of the remote-repo
 set REMOTE_NAME=%2
+rem wether the repo is public or not
+set PRIVACY_MODE=%3
 
 if "%FOLDER%"=="" (
-   echo usage: script.bat folderName remoteName
+   echo usage: script.bat folderName remoteName privacyMode "('pri' - private; 'pub' - public)"
    pause
    exit
 )
@@ -24,8 +28,10 @@ if "%REMOTE_NAME%"=="" (
    echo REMOTE_NAME now set to "!REMOTE_NAME!"
 )
 
+if "%PRIVACY_MODE%"=="pri" (set IS_PUBLIC=private) else (set IS_PUBLIC=public)
+
 echo Creating Remote-Repo...
-gh repo create %REMOTE_NAME% --public --source=. --remote=origin
+gh repo create %REMOTE_NAME% --"%PRIVACY_MODE%" --source=. --remote=origin
 git push origin master
 git push origin develop
 
