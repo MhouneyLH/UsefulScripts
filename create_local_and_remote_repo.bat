@@ -28,7 +28,7 @@ if "%REMOTE_NAME%"=="" (
    echo REMOTE_NAME now set to "!REMOTE_NAME!"
 )
 
-if "%PRIVACY_MODE%"=="pri" (set IS_PUBLIC=private) else (set IS_PUBLIC=public)
+if "%PRIVACY_MODE%"=="pri" (set PRIVACY_MODE=private) else (set PRIVACY_MODE=public)
 
 echo Creating Remote-Repo...
 gh repo create %REMOTE_NAME% --"%PRIVACY_MODE%" --source=. --remote=origin
